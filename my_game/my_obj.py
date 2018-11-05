@@ -1,4 +1,5 @@
 from my_game import vector, manager
+import math
 
 
 class Player:
@@ -43,10 +44,10 @@ class Blocks:
 
 class Ball:
     def __init__(self, w_size):
-        self.size = vector.Point2D(20, 20)
+        self.size = vector.Point2D(5, 5)
         self.pos = vector.Point2D(0, (w_size.y * 5/6 - 1) - self.size.y)
-        self.direction = vector.Point2D(1, -1)
-        self.speed = 4
+        self.direction = vector.Point2D(1 / math.sqrt(2), -1 / math.sqrt(2))
+        self.speed = 5
         self.collision_manager = manager.CollisionManager()
 
     def draw(self, screen, image):
