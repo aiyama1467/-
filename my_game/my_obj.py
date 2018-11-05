@@ -44,9 +44,9 @@ class Blocks:
 class Ball:
     def __init__(self, w_size):
         self.size = vector.Point2D(20, 20)
-        self.pos = vector.Point2D(0, (w_size.y * 5/6) - self.size.y)
-        self.direction = vector.Point2D(0, -1)
-        self.speed = 5
+        self.pos = vector.Point2D(0, (w_size.y * 5/6 - 1) - self.size.y)
+        self.direction = vector.Point2D(1, -1)
+        self.speed = 4
         self.collision_manager = manager.CollisionManager()
 
     def draw(self, screen, image):

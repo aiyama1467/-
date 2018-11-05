@@ -25,4 +25,13 @@ class CollisionManager:
         return False
 
     def is_collition_ball_bar(self, ball, bar):
-        return self.check_collision(ball.pos, bar.pos, ball.size, bar.size)
+        if self.check_collision(ball.pos, bar.pos, ball.size, bar.size):
+            ball.direction.y = -ball.direction.y
+
+    def is_collision_ball_wall(self, ball, wsize):
+        if ball.pos.y < 0:
+            ball.direction.y = -ball.direction.y
+        elif ball.pos.x < 0 or ball.pos.x + ball.size.x > wsize.x:
+            ball.direction.x = -ball.direction.x
+        elif ball.pos.y > wsize.y:
+            return True

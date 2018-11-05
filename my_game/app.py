@@ -35,11 +35,12 @@ class App:
             self._running = False
 
     def on_loop(self):
-        if self.collision_manager.is_collition_ball_blocks(self.ball, self.blocks):
-            self.ball.direction.y = 1
+        self.collision_manager.is_collition_ball_blocks(self.ball, self.blocks)
 
-        if self.collision_manager.is_collition_ball_bar(self.ball, self.player):
-            self.ball.direction.y = -1
+        self.collision_manager.is_collition_ball_bar(self.ball, self.player)
+
+        if self.collision_manager.is_collision_ball_wall(self.ball, self.size):
+            self._running = False
 
         self.ball.move()
 
