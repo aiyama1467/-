@@ -24,7 +24,7 @@ class Player:
 class Block:
     def __init__(self, x, y):
         self.is_Exist = True
-        self.size = vector.Point2D(x=80, y=40)
+        self.size = vector.Point2D(x=40, y=20)
         self.pos = vector.Point2D(x * self.size.x, y * self.size.y)
 
     def draw(self, screen, image):
@@ -34,11 +34,12 @@ class Block:
 
 class Blocks:
     def __init__(self):
-        self.blocks = [[Block(i, j) for j in range(4)] for i in range(5)]
+        self.num_of_block = (10, 8)
+        self.blocks = [[Block(i, j) for j in range(self.num_of_block[1])] for i in range(self.num_of_block[0])]
 
     def draw(self, screen, image):
-        for i in range(5):
-            for j in range(4):
+        for i in range(self.num_of_block[0]):
+            for j in range(self.num_of_block[1]):
                 self.blocks[i][j].draw(screen, image)
 
 

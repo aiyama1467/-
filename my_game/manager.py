@@ -18,7 +18,6 @@ class CollisionManager:
             for block in block_l:
                 if block.is_Exist:
                     b, s = self.check_collision(ball.pos, block.pos, ball.size, block.size)
-                    print(b, s)
                     if b:
                         block.is_Exist = False
                         if s == 0:

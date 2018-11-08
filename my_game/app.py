@@ -23,7 +23,7 @@ class App:
         self._display_surf = pygame.display.set_mode(self.size.get_point(), pygame.HWSURFACE)
 
         self._bar_surf = pygame.image.load('image/bar.jpg')
-        self._block_surf = pygame.image.load('image/block.jpg')
+        self._block_surf = pygame.image.load('image/block.png')
         self._ball_surf = pygame.image.load('image/ball.png')
         self._running = True
 
