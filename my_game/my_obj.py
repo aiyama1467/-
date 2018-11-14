@@ -47,14 +47,18 @@ class Ball:
     def __init__(self, w_size):
         self.size = vector.Point2D(5, 5)
         self.pos = vector.Point2D(0, (w_size.y * 5/6 - 1) - self.size.y)
-        self.direction = vector.Point2D(1 / math.sqrt(2), -1 / math.sqrt(2))
-        self.speed = 5
+        self.bpos = vector.Point2D(0, (w_size.y * 5/6 - 1) - self.size.y)
+        self.direction = vector.Point2D(math.sin(math.pi / 4), math.sin(-math.pi / 4))
+        self.speed = 4
         self.collision_manager = manager.CollisionManager()
+        self.is_collided = False
 
     def draw(self, screen, image):
         screen.blit(image, (self.pos.x, self.pos.y))
 
     def move(self):
+        self.bpos.x = self.pos.x
+        self.bpos.y = self.pos.y
         self.pos.x = self.pos.x + (self.speed * self.direction.x)
         self.pos.y = self.pos.y + (self.speed * self.direction.y)
 

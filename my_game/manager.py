@@ -1,40 +1,46 @@
 class CollisionManager:
-    def check_collision(self, ball, block, ball_size, block_size):
-        if block.x <= ball.x <= block.x + block_size.x:
-            if block.y <= ball.y <= block.y + block_size.y:
-                return True, 0
-            elif block.y <= ball.y + ball_size.y <= block.y + block_size.y:
-                return True, 0
-        elif ball.x <= block.x <= ball.x + ball_size.x:
-            if ball.y <= block.y <= ball.y + ball_size.y:
-                return True, 1
-            elif ball.y <= block.y + block_size.y <= ball.y + ball_size.y:
-                return True, 1
+    def check_collision(self, ball, block):
+        if block.pos.x <= ball.pos.x <= block.pos.x + block.size.x:
+            if block.pos.y <= ball.pos.y <= block.pos.y + block.size.y:
+                return True
+            elif block.pos.y <= ball.pos.y + ball.size.y <= block.pos.y + block.size.y:
+                return True
 
-        return False, -1
+        elif ball.pos.x <= block.pos.x <= ball.pos.x + ball.size.x:
+            if ball.pos.y <= block.pos.y <= ball.pos.y + ball.size.y:
+                return True
+            elif ball.pos.y <= block.pos.y + block.size.y <= ball.pos.y + ball.size.y:
+                return True
+
+        return False
 
     def is_collition_ball_blocks(self, ball, blocks):
         for block_l in blocks.blocks:
             for block in block_l:
                 if block.is_Exist:
-                    b, s = self.check_collision(ball.pos, block.pos, ball.size, block.size)
-                    if b:
+
+                    if self.check_collision(ball, block):
                         block.is_Exist = False
-                        if s == 0:
+                        if block.pos.y + block.size.y <= ball.bpos.y or block.pos.y >= ball.bpos.y:
                             ball.direction.y = -ball.direction.y
-                        else:
+                            ball.is_collided = True
+                        elif block.pos.y <= ball.bpos.y <= block.pos.y + block.size.y:
                             ball.direction.x = -ball.direction.x
+                            ball.is_collided = True
 
         return False
 
     def is_collition_ball_bar(self, ball, bar):
-        if self.check_collision(ball.pos, bar.pos, ball.size, bar.size)[0]:
+        if self.check_collision(ball, bar):
             ball.direction.y = -ball.direction.y
+            ball.is_collided = True
 
     def is_collision_ball_wall(self, ball, wsize):
         if ball.pos.y < 0:
             ball.direction.y = -ball.direction.y
+            ball.is_collided = True
         elif ball.pos.x < 0 or ball.pos.x + ball.size.x > wsize.x:
             ball.direction.x = -ball.direction.x
+            ball.is_collided = True
         elif ball.pos.y > wsize.y:
             return True
