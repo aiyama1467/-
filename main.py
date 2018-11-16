@@ -1,6 +1,10 @@
-from my_game import app
+from my_game import GUI
+import tkinter
 
 
 if __name__ == '__main__':
-    theApp = app.App()
-    theApp.on_execute()
+    root = tkinter.Tk()
+    root.title('Breakout!')
+
+    app = GUI.GUI(root)
+    root.mainloop()

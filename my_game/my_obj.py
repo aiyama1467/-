@@ -1,6 +1,6 @@
 from my_game import vector, manager
 import math
-
+import random
 
 class Player:
     def __init__(self, size):
@@ -35,6 +35,7 @@ class Block:
 class Blocks:
     def __init__(self):
         self.num_of_block = (10, 8)
+        self.count = self.num_of_block[0] * self.num_of_block[1]
         self.blocks = [[Block(i, j) for j in range(self.num_of_block[1])] for i in range(self.num_of_block[0])]
 
     def draw(self, screen, image):

@@ -18,9 +18,10 @@ class CollisionManager:
         for block_l in blocks.blocks:
             for block in block_l:
                 if block.is_Exist:
-
                     if self.check_collision(ball, block):
                         block.is_Exist = False
+                        blocks.count -= 1
+                        print(blocks.count)
                         if block.pos.y + block.size.y <= ball.bpos.y or block.pos.y >= ball.bpos.y:
                             ball.direction.y = -ball.direction.y
                             ball.is_collided = True
